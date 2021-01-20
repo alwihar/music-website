@@ -1,155 +1,216 @@
-.Search__wrap {
-  max-width: 500px;
+.Search__container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(255, 250, 252, 0.35);
 
-  .SearchSwitcher {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-
-    svg {
-      display: none;
-    }
-
-    .tabber {
-      position: relative;
-      display: flex;
-      align-items: stretch;
-      justify-content: stretch;
-
-      label {
-        user-select: none;
-        padding: 3rem;
-        cursor: pointer;
-        will-change: transform;
-        transform: translateZ(0px);
-        transition:
-                transform 125ms ease-in-out,
-                filter 125ms ease-in-out;
-        // filter: blur(.25rem);
-
-        &:hover {
-          transform: scale(1.15);
-          // filter: blur(0px);
-        }
-      }
-
-      input[type="radio"] {
-        display: none;
-
-        // static
-        &#t1 ~ .blob {
-          transform-origin: right center;
-        }
-
-        &#t2 ~ .blob {
-          transform-origin: left center;
-        }
-
-        // animated
-        &#t1:checked {
-
-          ~ .blob {
-            background: cornflowerblue;
-            animation-name: stretchyRev;
-          }
-        }
-
-        &#t2:checked {
-
-          ~ .blob {
-            background-color: skyblue;
-            animation-name: stretchy;
-          }
-        }
-      }
-
-      .blob {
-        top: 0;
-        left: 0;
-        width: 50%;
-        height: 100%;
-        position: absolute;
-        z-index: -1;
-        border-radius: 4rem;
-        animation-duration: .5s;
-        animation-direction: forwards;
-        animation-iteration-count: 1;
-        animation-fill-mode: forwards;
-        transition:
-                transform 150ms ease,
-                background 150ms ease;
-        filter: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"><defs><filter id=\"goo\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"10\" result=\"blur\" /><feColorMatrix in=\"blur\" mode=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9\" result=\"goo\" /><feComposite in=\"SourceGraphic\" in2=\"goo\" operator=\"atop\"/></filter></defs></svg>#goo");
-
-        &:before, &:after {
-          display: block;
-          content: "";
-          position: absolute;
-          top: 0;
-          background-color: inherit;
-          height: 100%;
-          width: 50%;
-          border-radius: 100%;
-          transform: scale(1.15);
-          transition: transform 150ms ease;
-          animation-name: pulse;
-          animation-duration: .5s;
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-        }
-
-        &:before {
-          left: 0;
-          animation-delay: .15s;
-        }
-
-        &:after {
-          right: 0;
-        }
-      }
-    }
-
-    @keyframes stretchy {
-      0% {
-        transform: translateX(0) scaleX(1);
-      }
-      50% {
-        transform: translateX(0) scaleX(2);
-      }
-      100% {
-        transform: translateX(100%) scaleX(1);
-      }
-    }
-
-    @keyframes stretchyRev {
-      0% {
-        transform: translateX(100%) scaleX(1);
-      }
-      50% {
-        transform: translateX(0) scaleX(2);
-      }
-      100% {
-        transform: translateX(0) scaleX(1);
-      }
-    }
-  }
-
-  .SearchForm {
+  .Search__wrap {
+    max-width: 500px;
+    flex: 1;
     display: flex;
     flex-direction: column;
 
-    .Search__input {
+    .SearchSwitcher {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      padding: 30px;
 
+      svg {
+        display: none;
+      }
+
+      .tabber {
+        position: relative;
+        display: flex;
+        align-items: stretch;
+        justify-content: stretch;
+        height: 60px;
+
+        label {
+          user-select: none;
+          font-size: 22px;
+          font-weight: bold;
+          cursor: pointer;
+          will-change: transform;
+          transform: translateZ(0px);
+          transition:
+                  transform 125ms ease-in-out,
+                  filter 125ms ease-in-out;
+          // filter: blur(.25rem);
+          z-index: 1;
+          height: 60px;
+          line-height: 60px;
+          min-width: 100px;
+          width: max-content;
+          text-align: center;
+
+          &:hover {
+            transform: scale(1.15);
+            // filter: blur(0px);
+          }
+        }
+
+        input[type="radio"] {
+          display: none;
+
+          // static
+          &#t1 ~ .blob {
+            transform-origin: right center;
+          }
+
+          &#t2 ~ .blob {
+            transform-origin: left center;
+          }
+
+          // animated
+          &#t1:checked {
+
+            ~ .blob {
+              background: #0b7e86;
+              animation-name: stretchyRev;
+            }
+          }
+
+          &#t2:checked {
+
+            ~ .blob {
+              background-color: #1ac7c7;
+              animation-name: stretchy;
+            }
+          }
+        }
+
+        .blob {
+          top: 0;
+          left: 0;
+          width: 50%;
+          height: 100%;
+          position: absolute;
+          border-radius: 4rem;
+          animation-duration: .5s;
+          animation-direction: forwards;
+          animation-iteration-count: 1;
+          animation-fill-mode: forwards;
+          transition:
+                  transform 150ms ease,
+                  background 150ms ease;
+          filter: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\"><defs><filter id=\"goo\"><feGaussianBlur in=\"SourceGraphic\" stdDeviation=\"10\" result=\"blur\" /><feColorMatrix in=\"blur\" mode=\"matrix\" values=\"1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9\" result=\"goo\" /><feComposite in=\"SourceGraphic\" in2=\"goo\" operator=\"atop\"/></filter></defs></svg>#goo");
+
+          &:before, &:after {
+            display: block;
+            content: "";
+            position: absolute;
+            top: 0;
+            background-color: inherit;
+            height: 100%;
+            width: 50%;
+            border-radius: 100%;
+            transform: scale(1.15);
+            transition: transform 150ms ease;
+            animation-name: pulse;
+            animation-duration: .5s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+          }
+
+          &:before {
+            left: 0;
+            animation-delay: .15s;
+          }
+
+          &:after {
+            right: 0;
+          }
+        }
+      }
+
+      @keyframes stretchy {
+        0% {
+          transform: translateX(0) scaleX(1);
+        }
+        50% {
+          transform: translateX(0) scaleX(2);
+        }
+        100% {
+          transform: translateX(100%) scaleX(1);
+        }
+      }
+
+      @keyframes stretchyRev {
+        0% {
+          transform: translateX(100%) scaleX(1);
+        }
+        50% {
+          transform: translateX(0) scaleX(2);
+        }
+        100% {
+          transform: translateX(0) scaleX(1);
+        }
+      }
     }
 
-    .Search__buttons {
+    .SearchForm {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .Search__input {
+        background-color: transparent;
+        border-color: #0b7e86;
+        border-width: 3px;
+        border-radius: 2px;
+        height: 50px;
+        min-width: 400px;
+        width: 100%;
+        outline: none;
+        font-size: 20px;
+        font-weight: bolder;
+        color: white;
+        padding: 0 20px;
+      }
 
       .Search__button {
         outline: none;
-        background-color: transparent;
+        border: none;
         cursor: pointer;
+        min-width: max-content;
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        background-color: rgba(255, 250, 252, 0.85);
+        border-radius: 20px;
+        color: #0b7e86;
+        font-weight: bold;
+        font-size: 20px;
+        margin-top: 20px;
+      }
+    }
+
+    .SearchList {
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(255, 250, 252, 0.55);
+      border-radius: 20px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      margin: 20px 0;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        outline: 1px solid slategrey;
       }
     }
   }

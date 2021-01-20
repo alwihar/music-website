@@ -3,4 +3,7 @@
     height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    background-image: url("assets/concert.jpg");
+    background-size: contain;
 }

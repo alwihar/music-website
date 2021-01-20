@@ -9,9 +9,7 @@ const SearchForm = ({value, handleChange, handleSubmit}) => {
                    onChange={handleChange}
                    value={value}
             />
-            <div className="Search__buttons">
-                <button className="Search__button" onClick={handleSubmit}>Search</button>
-            </div>
+            <button className="Search__button" onClick={handleSubmit}>Search</button>
         </form>
     )
 };

@@ -8,7 +8,7 @@ import SearchList from "../SearchList/SearchList";
 const Search = () => {
 
     const [value, setValue] = useState('');
-    const [checked, setChecked] = useState("");
+    const [checked, setChecked] = useState("songs");
     const [songsData, setSongsData] = useState([]);
     const [albumsData, setAlbumsData] = useState([]);
 
@@ -28,7 +28,11 @@ const Search = () => {
 
     const getSongs = (queryString) => {
         const songs = [];
-        axios.get(`https://itunes.apple.com/us/rss/topsongs/limit=100/json`)
+        axios.get(`https://itunes.apple.com/us/rss/topsongs/limit=100/json`, {
+            params: {
+                q: queryString,
+            }
+        })
             .then(function (response) {
                 response?.data?.feed?.entry.map((item, ind) => {
                     const songsData = {
@@ -47,7 +51,11 @@ const Search = () => {
 
     const getAlbums = (queryString) => {
         const albums = [];
-        axios.get(`https://itunes.apple.com/us/rss/topalbums/limit=100/json`)
+        axios.get(`https://itunes.apple.com/us/rss/topalbums/limit=100/json`, {
+            params: {
+                q: queryString,
+            }
+        })
             .then(function (response) {
                 response?.data?.feed?.entry.map((item, ind) => {
                     const albumsData = {
@@ -66,20 +74,22 @@ const Search = () => {
 
 
     return (
-        <div className="Search__wrap">
-            <SearchSwitcher
-                checked={checked}
-                handleCheck={handleCheck}
-            />
-            <SearchForm
-                value={value}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-            />
-            <SearchList
-                songs={songsData}
-                albums={albumsData}
-            />
+        <div className="Search__container">
+            <div className="Search__wrap">
+                <SearchSwitcher
+                    checked={checked}
+                    handleCheck={handleCheck}
+                />
+                <SearchForm
+                    value={value}
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                />
+                <SearchList
+                    songs={songsData}
+                    albums={albumsData}
+                />
+            </div>
         </div>
     )
 };
